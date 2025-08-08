@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwc2ec8wt3s68"]
+
+[ext_resource type="Script" uid="uid://bhsn1kwlhmy58" path="res://bars.gd" id="1_o1tdx"]
+[ext_resource type="PackedScene" uid="uid://cbteyf4s1fcgv" path="res://submarine.tscn" id="2_vfjpo"]
+
+[node name="bars" type="ProgressBar"]
+offset_right = 260.0
+offset_bottom = 4.0
+value = 60.0
+show_percentage = false
+script = ExtResource("1_o1tdx")
+
+[node name="Submarine" parent="." instance=ExtResource("2_vfjpo")]
+
+[node name="Submarine2" parent="." instance=ExtResource("2_vfjpo")]
+
+[connection signal="health_changed" from="Submarine" to="." method="_on_submarine_health_changed"]
+[connection signal="oxygen_changed" from="Submarine" to="." method="_on_submarine_oxygen_changed"]
+[connection signal="oxygen_depleted" from="Submarine" to="." method="_on_submarine_oxygen_depleted"]
+[connection signal="submarine_died" from="Submarine" to="." method="_on_submarine_submarine_died"]
