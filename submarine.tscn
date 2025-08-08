@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbteyf4s1fcgv"]
+[gd_scene load_steps=7 format=3 uid="uid://cbteyf4s1fcgv"]
 
 [ext_resource type="Script" uid="uid://vxufw1fic507" path="res://submarine.gd" id="1_k4f85"]
 [ext_resource type="Texture2D" uid="uid://cuhiqqq18w0im" path="res://icon.svg" id="2_qvldv"]
+[ext_resource type="Script" uid="uid://cfv5ysm6dyat1" path="res://harpoon.gd" id="3_qvldv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k4f85"]
 size = Vector2(123, 125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qvldv"]
 size = Vector2(126, 125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxksq"]
+size = Vector2(623, 46)
 
 [node name="Submarine" type="CharacterBody2D"]
 script = ExtResource("1_k4f85")
@@ -23,7 +27,25 @@ position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_k4f85")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_qvldv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="HarpoonMount" type="Node2D" parent="."]
+
+[node name="Harpoon" type="Area2D" parent="HarpoonMount"]
+scale = Vector2(-1, -1)
+script = ExtResource("3_qvldv")
+
+[node name="Sprite2D" type="Sprite2D" parent="HarpoonMount/Harpoon"]
+position = Vector2(-337, -14)
+scale = Vector2(4.29688, 0.375)
+texture = ExtResource("2_qvldv")
+
+[node name="Marker2D" type="Marker2D" parent="HarpoonMount/Harpoon"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HarpoonMount/Harpoon"]
+position = Vector2(-301.5, -13)
+shape = SubResource("RectangleShape2D_wxksq")

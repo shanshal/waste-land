@@ -3,6 +3,7 @@ var speed: float = 0
 var acceleration: float = 20   
 var max_speed: float = 200     
 var move_angle: float = 20     
+
 var MaxHealth: int=100
 var CurrentHealth: int= MaxHealth 
 
@@ -12,6 +13,9 @@ var oxygen_damage_rate: float = 10.0
 var current_oxygen: float
 var oxygen_timer: Timer
 var damage_timer: Timer
+
+@onready var harpoon_mount = $HarpoonMount
+@onready var harpoon = $HarpoonMount/Harpoon
 
 
 signal health_changed(current_health: int, max_health: int)
@@ -32,6 +36,7 @@ func _physics_process(delta):
 	
 	velocity = direction * speed
 	move_and_slide()
+	update_harpoon_rotation()
 	
 # HEALTH
 
@@ -108,5 +113,11 @@ func increas_max_oxygen(Kelp: float):
 	current_oxygen+= Kelp
 	oxygen_changed.emit(current_oxygen, max_oxygen)
 	
+
+#HARPOON
+
+func update_harpoon_rotation():
+	var MousePosition= get_global_mouse_position()
+	var direction= MousePosition - harpoon_mount.global_position
 	
-	
+	harpoon.rotation= direction.angle()
