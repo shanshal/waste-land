@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="waste_waters"
+run/main_scene="uid://cbteyf4s1fcgv"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/mode=4
 
 [dotnet]
 
